@@ -2,9 +2,7 @@ import './index.css'
 import { Routes, Route } from 'react-router-dom'
 import Home from './routes/Home'
 import Navigation from "./components/Navigation.tsx";
-
-// Example pages for the routes
-const About = () => <h2>About Page</h2>
+import AddPoem from "./routes/AddPoem.tsx";
 
 function App() {
 
@@ -15,7 +13,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/about" element={<About/>}/>
+                    <Route path="/pridat-svoj-vers" element={<AddPoem/>}/>
                 </Routes>
             </main>
         </>

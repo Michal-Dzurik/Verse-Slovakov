@@ -13,6 +13,7 @@ export default {
         'light-gray': '#ADADA9', // Text default color
         'white': '#D7D7D7', // White
 
+        'form-component': '#424242',
         'white-darken': '#acacac',
       },
       fontFamily: {

@@ -12,7 +12,7 @@
     }
 
     #root{
-        @apply pt-40 md:pt-32 min-h-screen;
+        @apply pt-32 md:pt-24 min-h-screen flex flex-col items-center justify-center;
     }
 
     p{
@@ -36,7 +36,7 @@
     }
 
     .link-button{
-        @apply px-6 py-2 bg-white border-transparent rounded-md text-sm font-bold text-dark-gray mt-3;
+        @apply transition-colors duration-300 px-6 py-2 bg-white border-transparent rounded-md text-sm font-bold text-dark-gray mt-3;
     }
 
     .link-button:hover {
@@ -47,7 +47,7 @@
 
 @layer components {
     .navigation{
-        @apply max-w-screen-xl flex flex-wrap items-center justify-between px-6 py-8 top-0 left-1/2 -translate-x-1/2 fixed w-full border-gray bg-dark-gray border-0 border-b-2 border-dotted;
+        @apply max-w-screen-xl flex flex-wrap items-center justify-between px-6 py-6 top-0 left-1/2 -translate-x-1/2 fixed w-full border-gray bg-dark-gray border-0 border-b-2 border-dotted;
     }
 
     .logo{
@@ -64,6 +64,14 @@
 
     .highlighted-text{
         @apply font-bold text-white;
+    }
+
+    .input{
+        @apply bg-form-component rounded-md text-sm font-bold px-6 py-3 text-white placeholder:text-white-darken;
+    }
+
+    .input:focus{
+        @apply outline-none
     }
 }
 
