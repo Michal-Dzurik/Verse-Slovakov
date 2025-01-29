@@ -54,7 +54,7 @@ function AddPoem() {
                               placeholder='Vaše verše'>{poem}</textarea>
 
                     <Checkbox className='mt-6 mx-auto' checked={terms} setChecked={setTerms} name='terms'>
-                        Súhlasím so spracovaním <Link className='text-white font-bold' to='/podmienky'>osobných údajov.</Link>
+                        Súhlasím so spracovaním <Link target='_blank' className='text-white font-bold underline' to='/podmienky'>osobných údajov.</Link>
                     </Checkbox>
 
                     <Checkbox className='mt-6 mx-auto' checked={anonymous} setChecked={setAnonymous} name='anonymous'>

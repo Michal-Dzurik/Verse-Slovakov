@@ -36,7 +36,7 @@
     }
 
     .link-button{
-        @apply transition-colors duration-300 px-6 py-2 bg-white border-transparent rounded-md text-sm font-bold text-dark-gray mt-3;
+        @apply transition-colors duration-300 px-6 py-3 bg-white border-transparent rounded-md text-sm font-bold text-dark-gray mt-3 inline-block;
     }
 
     .link-button:hover {

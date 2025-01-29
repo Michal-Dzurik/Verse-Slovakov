@@ -8,7 +8,7 @@ function Home() {
         <PageAnimationWrapper>
             <div className='text-center'>
                 <img src={logo} alt="symbol" className='w-56 md:w-96 inline-block'/>
-                <p className='text-center'>
+                <p className='text-center -mt-4'>
                     Tento nezávislý študentský projekt <span className='highlighted-text'>chce kolektívnou poéziou poukázať na nespokojnosť so súčasným vládnym zriadením.</span> <br/><br/>
 
                     Chceme bojovať za naše politické presvedčenie aj takýmto spôsobom, keďže si uvedomujeme, akú dôležitú rolu hrala poézia v našej histórii. <br/><br/>
