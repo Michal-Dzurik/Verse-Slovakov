@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  plugins: [],
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,15 +8,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'dark-grey': '#1F1F1F', // Background color
-        'light-grey': '#ADADA9', // Text default color
+        'dark-gray': '#1F1F1F', // Background color
+        'gray': '#353535',
+        'light-gray': '#ADADA9', // Text default color
         'white': '#D7D7D7', // White
+
+        'white-darken': '#acacac',
       },
       fontFamily: {
         'main' : ['Roboto Serif', 'serif'],
       },
     },
   },
-  plugins: [],
 }
 
