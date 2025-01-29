@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body{
+        @apply bg-dark-grey min-h-screen m-0 p-0;
+    }
+
+    *{
+        @apply text-light-grey font-main p-0 m-0 box-border;
+    }
+
+    a, a *{
+        @apply transition-colors duration-300 ease-in-out;
+    }
+
+    a:hover, a:hover * {
+        @apply outline-none text-white;
+    }
+
+    a:focus {
+        @apply outline-none;
+    }
+
+    #root {
+        @apply min-h-screen;
+    }
+}
+
+
+@layer components {
+    .navigation{
+        @apply max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 my-3;
+    }
+
+    .logo{
+        @apply self-center text-2xl font-semibold whitespace-nowrap;
+    }
+
+    .feather{
+        @apply transition-all duration-300 ease-in-out;
+    }
+
+    .link:hover a, .link:hover .feather{
+        @apply text-white fill-white;
+    }
+}
+
+
