@@ -1,7 +1,10 @@
+import {Timestamp} from "firebase/firestore";
+
 export type PoemType = {
     name?: string,
     lastName?: string,
     poem: string,
-    timestamp: number,
+    timestamp: Timestamp,
     email: string,
+    verified: boolean,
 }

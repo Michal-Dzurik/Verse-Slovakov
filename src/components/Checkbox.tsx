@@ -1,14 +1,15 @@
 import { ReactNode } from "react";
 
-type CheckboxProps = {
+type Props = {
     children: ReactNode;
     checked: boolean;
     setChecked: (checked: boolean) => void;
     name: string;
     className?: string;
+    required?: boolean;
 };
 
-function Checkbox({ children, checked, setChecked,name , className }: CheckboxProps) {
+function Checkbox({ children, checked, setChecked,name,required,className }: Props) {
     return (
         <div className={`inline-flex items-center w-full sm:w-auto ${className}`}>
             <label className="flex items-center cursor-pointer relative" htmlFor={'checkbox-' + name}>
@@ -16,7 +17,8 @@ function Checkbox({ children, checked, setChecked,name , className }: CheckboxPr
                        checked={checked}
                        onChange={(e) => setChecked(e.target.checked)}
                        className="peer  h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border bg-form-component border-form-component checked:bg-white checked:border-white"
-                       id={'checkbox-' + name}/>
+                       id={'checkbox-' + name}
+                required={required}/>
                 <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <svg xmlns="http://www.w3.org/2000/svg"
                className="h-3.5 w-3.5"

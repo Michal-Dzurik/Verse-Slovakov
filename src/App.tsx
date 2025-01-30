@@ -24,7 +24,7 @@ function App() {
                         <Route path="/pridat-svoj-vers" element={<AddPoem/>}/>
                         <Route path="/podmienky" element={<Terms/>}/>
                         <Route path="/email-uspesne-poslany" element={<EmailSent/>}/>
-                        <Route path="/verifikacia" element={<PoemVerify/>}/>
+                        <Route path="/verifikacia/{id}" element={<PoemVerify/>}/>
                         <Route path="/verse" element={<Poems/>}/>
                     </Routes>
                 </AnimatePresence>

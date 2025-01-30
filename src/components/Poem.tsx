@@ -10,7 +10,7 @@ function Poem(props: Props) {
 
     return (
         <article className="poem">
-            <p className='text-sm mb-2'><span className='font-bold text-[#fff]'>{ lastName && name ? name + " " + lastName : 'Anonym'}</span><span className='text-meta-data'> • <time className='text-meta-data' dateTime={format(new Date(timestamp * 1000), "yyyy-MM-dd HH:mm:ss")}>{format(new Date(timestamp * 1000), "dd.MM.yyyy")}</time></span></p>
+            <p className='text-sm mb-2'><span className='font-bold text-[#fff]'>{ lastName && name ? name + " " + lastName : 'Anonym'}</span><span className='text-meta-data'> • <time className='text-meta-data' dateTime={timestamp.toDate().toISOString()}>{format(new Date(timestamp.nanoseconds), "dd.MM.yyyy")}</time></span></p>
             <p style={{whiteSpace: "pre-wrap"}} className='text-white'>{poem}</p>
         </article>
     );

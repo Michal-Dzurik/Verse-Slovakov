@@ -2,6 +2,7 @@ import PageAnimationWrapper from "../components/PageAnimationWrapper.tsx";
 import {useEffect, useState} from "react";
 import {PoemType} from "../types/PoemType.ts";
 import Poem from "../components/Poem.tsx";
+import {Timestamp} from "firebase/firestore";
 
 function Poems() {
     const [data, setData] = useState<PoemType[]>([]);
@@ -12,7 +13,8 @@ function Poems() {
                 lastName: 'Dzurík',
                 name: 'Michal',
                 email: 'misko7104@gmail.com',
-                timestamp: 1738218838,
+                timestamp: new Timestamp(1,1),
+                verified: true,
                 poem: 'Slovnesko nám znova krváca \n' +
                     'pred očami demokracia sa vytráca \n' +
                     'vytvára sa autokratický vládca \n' +
@@ -37,7 +39,8 @@ function Poems() {
                 lastName: 'Dzurík',
                 name: 'Michal',
                 email: 'misko7104@gmail.com',
-                timestamp: 1738218838,
+                timestamp: new Timestamp(1,1),
+                verified: true,
                 poem: 'Slovnesko nám znova krváca \n' +
                     'pred očami demokracia sa vytráca \n' +
                     'vytvára sa autokratický vládca \n' +
