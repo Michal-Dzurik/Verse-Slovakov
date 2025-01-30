@@ -63,8 +63,8 @@ function AddPoem() {
                 to: [poem.email],
                 message: {
                     subject: 'Potvrdenie vaších veršov',
-                    text: `Ďakujeme za váš príspevok \n ${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}`,
-                    html: `Ďakujeme za váš príspevok<br><a href="${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}">Kliknite sem pre potvrdenie</a>`
+                    text: `Dobrý deň,\n\nĎakujeme za váš príspevok. Verifikovať ho môžete kliknutím na tento odkaz ${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}. \n\nS pozdravom \nVerše Slovákov`,
+                    html: `Dobrý deň,<br/><br/>Ďakujeme za váš príspevok. Verifikovať ho môžete kliknutím na tento odkaz <br><a href="${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}">${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}</a>. <br><br>S pozdravom<br>Verše Slovákov`
                 }
             }
 
