@@ -10,7 +10,7 @@ function EmailSent() {
                 <p className='mt-8'>
                     Skontrolujte svoj email a <span className='highlighted-text'>potvrďte pridanie</span> vaších veršov. <br/><br/>
 
-                    V prípade, že pridanie nepotvrdíte, vaše verše nebudú viditeľné verejne ani v elektronickej knihe.
+                    V prípade, že pridanie nepotvrdíte, vaše verše nebudú verejne viditeľné ani v elektronickej knihe.
                 </p>
             </article>
         </PageAnimationWrapper>

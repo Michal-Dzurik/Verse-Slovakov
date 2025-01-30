@@ -24,12 +24,10 @@ function Navigation() {
                                           fill="#ADADA9"/>
                                 </svg>
 
-                                Napíš svoj verš
+                                Napíš svoje verše
                             </Link>
                         </li>
-
                     </ul>
-
                 </div>
             </nav>
         </>

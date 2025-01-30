@@ -97,7 +97,7 @@ function Poems() {
                         <a href='#' onClick={ (e) => {
                             e.preventDefault();
                             loadMorePoems();
-                        }} className="load-more">Načítať ďalšie</a>
+                        }} className="load-more">Načítať viac</a>
                     </div>
                 ) : ''}
             </div>

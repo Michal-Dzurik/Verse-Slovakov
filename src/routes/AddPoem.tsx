@@ -32,7 +32,7 @@ function AddPoem() {
         if (!terms)
             return {
                 valid: false,
-                message: 'Pre odoslanie veršu je potrebné prijať podmienky stránky.'
+                message: 'Pre odoslanie veršu je potrebné začiarknuť "Súhlasím so spracovaním osobných údajov".'
             }
 
         if (!anonymous && (name.trim() == '') && (lastName.trim() == ''))
@@ -63,8 +63,8 @@ function AddPoem() {
                 to: [poem.email],
                 message: {
                     subject: 'Potvrdenie vaších veršov',
-                    text: `Dobrý deň,\n\nĎakujeme za váš príspevok. Verifikovať ho môžete kliknutím na tento odkaz ${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}. \n\nS pozdravom \nVerše Slovákov`,
-                    html: `Dobrý deň,<br/><br/>Ďakujeme za váš príspevok. Verifikovať ho môžete kliknutím na tento odkaz <br><a href="${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}">${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}</a>. <br><br>S pozdravom<br>Verše Slovákov`
+                    text: `Dobrý deň,\n\nďakujeme za váš príspevok. Verifikovať ho môžete kliknutím na tento odkaz ${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}. \n\nS pozdravom, \nVerše Slovákov`,
+                    html: `Dobrý deň,<br/><br/>ďakujeme za váš príspevok. Verifikovať ho môžete kliknutím na tento odkaz <br><a href="${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}">${window.location.protocol}//${window.location.host}/verifikacia/${doc.id}</a>. <br><br>S pozdravom,<br>Verše Slovákov`
                 }
             }
 
@@ -74,7 +74,7 @@ function AddPoem() {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         }catch (e) {
             console.log(e)
-            alert("Niekde nastala chyba");
+            alert("Niekde nastala chyba.");
         }
 
         setPending(false);
