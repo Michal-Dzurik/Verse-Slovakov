@@ -87,7 +87,8 @@ function AddPoem() {
             email: email,
             poem: poem,
             verified: false,
-            timestamp: Timestamp.now()
+            timestamp: Timestamp.now(),
+            shareCount: 0
         });
         else alert(validation.message);
     }

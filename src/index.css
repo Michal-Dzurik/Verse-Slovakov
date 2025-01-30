@@ -82,6 +82,34 @@
         @apply outline-none
     }
 
+    .share-button, .share-button-shared{
+        @apply inline-block;
+    }
+
+    .share-button:hover{
+        @apply cursor-copy;
+    }
+
+    .share-button path, .share-button-shared path{
+        @apply fill-form-component;
+    }
+
+    .share-button svg, .share-button-shared svg{
+        @apply h-3 ml-2;
+    }
+
+    .share-button:hover path{
+        @apply fill-white;
+    }
+
+    .share-button-shared path{
+        @apply fill-gray;
+    }
+
+    .share-button-shared{
+        @apply cursor-not-allowed;
+    }
+
     .fade-in {
         animation: fadeIn 1s ease-out forwards; /* 1s for the fade-in duration */
     }

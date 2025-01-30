@@ -8,4 +8,5 @@ export type PoemType = {
     timestamp: Timestamp,
     email: string,
     verified: boolean,
+    shareCount: number,
 }

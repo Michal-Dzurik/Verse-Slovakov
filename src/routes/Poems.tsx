@@ -1,7 +1,7 @@
 import PageAnimationWrapper from "../components/PageAnimationWrapper.tsx";
 import {useEffect, useState} from "react";
 import {PoemType} from "../types/PoemType.ts";
-import Poem from "../components/Poem.tsx";
+import PoemView from "../components/PoemView.tsx";
 import {collection, getDocs, orderBy, query, where, startAfter, limit, QueryDocumentSnapshot, DocumentData} from "firebase/firestore";
 import {useFirebase} from "../contexts/FirebaseContext.tsx";
 
@@ -86,7 +86,7 @@ function Poems() {
                                     ...
                                 </p>
                             ) : ''}
-                            <Poem poem={poem} />
+                            <PoemView poem={poem} share={true} />
                         </li>
                     ))}
                 </ul>

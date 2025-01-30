@@ -1,13 +1,14 @@
 import PageAnimationWrapper from "../components/PageAnimationWrapper.tsx";
-import done from "../assets/done.svg";
 import {useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import {useFirebase} from "../contexts/FirebaseContext.tsx";
-import { doc, updateDoc } from "firebase/firestore";
-import {Firestore} from "@firebase/firestore";
+import { doc } from "firebase/firestore";
+import {Firestore, getDoc} from "@firebase/firestore";
+import {PoemType} from "../types/PoemType.ts";
+import PoemView from "../components/PoemView.tsx";
 
 type Params =  {
-    id: string|undefined;
+    id: string| undefined;
 }
 
 function PoemVerify() {
@@ -15,18 +16,19 @@ function PoemVerify() {
     const db: Firestore = useFirebase();
     const navigate = useNavigate();
 
-    const [verified, setVerified] = useState<boolean|null>(null);
+    const [poem, setPoem] = useState<PoemType|null>(null);
 
-    const verify = async () =>{
+    const load = async () =>{
         if (id == undefined) return;
-        const ref = doc(db, "Poems", id);
+
 
         try{
-            await updateDoc(ref, {
-                verified: true
-            })
+            const poemRef = doc(db, "Poems", id);
+            const poemSnap = await getDoc(poemRef);
 
-            setVerified(true);
+            if (poemSnap.exists()) setPoem({ id: poemSnap.id, ...poemSnap.data() } as PoemType);
+            else navigate('/404');
+
 
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         }catch(err){
@@ -36,7 +38,7 @@ function PoemVerify() {
 
     useEffect(() => {
         if (id != undefined) {
-            verify();
+            load();
             return;
         }
 
@@ -45,12 +47,11 @@ function PoemVerify() {
 
     return (
         <PageAnimationWrapper>
-            <article className={ verified ? "text-center fade-in block" : "text-center opacity-0 hidden"}>
-                <img className='inline-block' src={done} alt="symbol"/>
-                <p className='mt-8'>
-                    Vaše verše boli <span className='highlighted-text'>úspešne pridané</span>.
-                </p>
-            </article>
+            {poem ? (
+                <article className="text-left fade-in">
+                    <PoemView poem={poem}/>
+                </article>
+            ) : ''}
         </PageAnimationWrapper>
     )
 }
