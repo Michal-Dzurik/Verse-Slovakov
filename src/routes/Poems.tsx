@@ -55,6 +55,7 @@ function Poems() {
                 timestamp: doc.data().timestamp || '',
                 email: doc.data().email || '',
                 verified: doc.data().verified || false,
+                shareCount: doc.data().shareCount || 0,
             }));
 
             if (poemsList.length <= LIMIT) setHasMore(false);
