@@ -82,7 +82,7 @@
         @apply outline-none
     }
 
-    .share-button, .share-button-shared{
+    .share-button, .share-button-shared, .image-button{
         @apply inline-block;
     }
 
@@ -90,7 +90,7 @@
         @apply cursor-copy;
     }
 
-    .share-button path, .share-button-shared path{
+    .share-button path, .share-button-shared path, .image-button path{
         @apply fill-form-component;
     }
 
@@ -98,7 +98,7 @@
         @apply h-3 ml-2;
     }
 
-    .share-button:hover path{
+    .share-button:hover path, .image-button:hover path{
         @apply fill-white;
     }
 
