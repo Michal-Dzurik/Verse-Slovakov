@@ -4,7 +4,7 @@ function Navigation() {
 
     return (
         <>
-            <nav className="navigation">
+            <nav className="navigation z-10">
                 <Link to="/" className="logo space-x-3 rtl:space-x-reverse w-full md:w-auto text-center">
                     Verše Slovákov
                 </Link>

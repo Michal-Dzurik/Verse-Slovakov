@@ -2,73 +2,84 @@ import PageAnimationWrapper from "../components/PageAnimationWrapper.tsx";
 import {useEffect, useState} from "react";
 import {PoemType} from "../types/PoemType.ts";
 import Poem from "../components/Poem.tsx";
-import {Timestamp} from "firebase/firestore";
+import {collection, getDocs, orderBy, query, where, startAfter, limit, QueryDocumentSnapshot, DocumentData} from "firebase/firestore";
+import {useFirebase} from "../contexts/FirebaseContext.tsx";
+
 
 function Poems() {
-    const [data, setData] = useState<PoemType[]>([]);
+    const LIMIT = 5;
+
+    const [poems, setPoems] = useState<PoemType[]>([]);
+    const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>>();
+    const [hasMore, setHasMore] = useState<boolean>(true);
+
+    const db = useFirebase();
+
+    const updatePoems = (poemsList: PoemType[]) => {
+        for (const newPoem of poemsList) {
+            setPoems((prevPoems) => {
+                const exists = prevPoems.some((poem) => poem.id === newPoem.id);
+                return exists ? prevPoems : [...prevPoems, newPoem];
+            });
+        }
+
+    }
+
+    const fetchPoems = async (startAfterDoc?: QueryDocumentSnapshot<DocumentData, DocumentData>) => {
+        try {
+            const poemsCollection = collection(db, 'Poems');
+
+            let poemsQuery = query(
+                poemsCollection,
+                where('verified', '==', true),
+                orderBy('timestamp'),
+                limit(LIMIT),
+            );
+
+            if (startAfterDoc) {
+                poemsQuery = query(poemsQuery, startAfter(startAfterDoc));
+            }
+
+            const querySnapshot = await getDocs(poemsQuery);
+
+            if (querySnapshot.empty) {
+                setHasMore(false);
+                return;
+            }
+
+            const poemsList: PoemType[] = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                poem: doc.data().poem || '',
+                name: doc.data().name || '',
+                lastName: doc.data().lastName || '',
+                timestamp: doc.data().timestamp || '',
+                email: doc.data().email || '',
+                verified: doc.data().verified || false,
+            }));
+
+            if (poemsList.length <= LIMIT) setHasMore(false);
+
+            updatePoems(poemsList);
+
+            setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+        } catch (error) {
+            console.error('Error fetching poems: ', error);
+        }
+    }
 
     useEffect(() => {
-        setData([
-            {
-                lastName: 'Dzurík',
-                name: 'Michal',
-                email: 'misko7104@gmail.com',
-                timestamp: new Timestamp(1,1),
-                verified: true,
-                poem: 'Slovnesko nám znova krváca \n' +
-                    'pred očami demokracia sa vytráca \n' +
-                    'vytvára sa autokratický vládca \n' +
-                    'a hlas ľudu moc stráca \n' +
-                    '\n' +
-                    'Začalo to voľbami \n' +
-                    'tak ako vždy \n' +
-                    'Mysleli sme, že zlé časi sú za nami \n' +
-                    'A je? Opýtajte sa tejto vlády \n' +
-                    '\n' +
-                    'Kultúru rozvracajú nám \n' +
-                    'Zdravotníkom slobodu berú \n' +
-                    'A za ministerské posty sa div nepobijú \n' +
-                    'A čo ja bežný občan? Čo ja robiť mám? \n' +
-                    '\n' +
-                    'Na námestí budem protestovať \n' +
-                    'Známych obvolám, že mali by domov pricestovať \n' +
-                    'Prísť do domoviny a s nami bojovať \n' +
-                    'A spolu s nami vládu odvolať ',
-            },
-            {
-                lastName: 'Dzurík',
-                name: 'Michal',
-                email: 'misko7104@gmail.com',
-                timestamp: new Timestamp(1,1),
-                verified: true,
-                poem: 'Slovnesko nám znova krváca \n' +
-                    'pred očami demokracia sa vytráca \n' +
-                    'vytvára sa autokratický vládca \n' +
-                    'a hlas ľudu moc stráca \n' +
-                    '\n' +
-                    'Začalo to voľbami \n' +
-                    'tak ako vždy \n' +
-                    'Mysleli sme, že zlé časi sú za nami \n' +
-                    'A je? Opýtajte sa tejto vlády \n' +
-                    '\n' +
-                    'Kultúru rozvracajú nám \n' +
-                    'Zdravotníkom slobodu berú \n' +
-                    'A za ministerské posty sa div nepobijú \n' +
-                    'A čo ja bežný občan? Čo ja robiť mám? \n' +
-                    '\n' +
-                    'Na námestí budem protestovať \n' +
-                    'Známych obvolám, že mali by domov pricestovať \n' +
-                    'Prísť do domoviny a s nami bojovať \n' +
-                    'A spolu s nami vládu odvolať ',
-            }
-        ]);
-    },[])
+        fetchPoems();
+    },[]);
+
+    const loadMorePoems = () => {
+        if (lastVisible) fetchPoems(lastVisible);
+    };
 
     return (
         <PageAnimationWrapper>
-            <div className='text-left mb-4'>
+            <div className={poems.length != 0 ? "text-left mb-4 fade-in block" : "text-left mb-4 opacity-0 hidden"}>
                 <ul>
-                    { data.map((poem, index) => (
+                    { poems.map((poem, index) => (
                         <li key={index}>
                             {index != 0 ? (
                                 <p className='text-center text-4xl text-meta-data mb-3'>
@@ -80,9 +91,14 @@ function Poems() {
                     ))}
                 </ul>
 
-                <div className='text-center'>
-                    <a href='#' className="load-more">Načítať ďalšie</a>
-                </div>
+                { hasMore ? (
+                    <div className='text-center'>
+                        <a href='#' onClick={ (e) => {
+                            e.preventDefault();
+                            loadMorePoems();
+                        }} className="load-more">Načítať ďalšie</a>
+                    </div>
+                ) : ''}
             </div>
         </PageAnimationWrapper>
     )

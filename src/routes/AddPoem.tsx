@@ -70,6 +70,7 @@ function AddPoem() {
             goToVerification()
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         }catch (e) {
+            console.log(e)
             alert("Niekde nastala chyba");
         }
 
