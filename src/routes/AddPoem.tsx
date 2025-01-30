@@ -9,6 +9,7 @@ import {PoemType} from "../types/PoemType.ts";
 import {ValidationResult} from "../types/ValidationResult.ts";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import {EmailType} from "../types/EmailType.ts";
+import {Firestore} from "@firebase/firestore";
 
 function AddPoem() {
     const [name, setName] = useState<string>('');
@@ -18,7 +19,7 @@ function AddPoem() {
     const [terms, setTerms] = useState<boolean>(false);
     const [anonymous, setAnonymous] = useState<boolean>(false);
 
-    const db = useFirebase();
+    const db: Firestore = useFirebase();
     const navigate = useNavigate();
 
     const goToVerification = () => {

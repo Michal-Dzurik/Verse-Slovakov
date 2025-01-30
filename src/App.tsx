@@ -9,6 +9,7 @@ import EmailSent from "./routes/EmailSent.tsx";
 import PoemVerify from "./routes/PoemVerify.tsx";
 import Poems from "./routes/Poems.tsx";
 import {FirebaseProvider} from "./contexts/FirebaseContext.tsx";
+import NotFound from "./routes/NotFound.tsx";
 
 function App() {
     const location = useLocation();
@@ -24,8 +25,10 @@ function App() {
                         <Route path="/pridat-svoj-vers" element={<AddPoem/>}/>
                         <Route path="/podmienky" element={<Terms/>}/>
                         <Route path="/email-uspesne-poslany" element={<EmailSent/>}/>
-                        <Route path="/verifikacia/{id}" element={<PoemVerify/>}/>
+                        <Route path="/verifikacia/:id" element={<PoemVerify/>}/>
                         <Route path="/verse" element={<Poems/>}/>
+                        <Route path="/404" element={<NotFound/>}/>
+                        <Route path="/*" element={<NotFound/>}/>
                     </Routes>
                 </AnimatePresence>
             </main>
