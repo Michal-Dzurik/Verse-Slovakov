@@ -19,6 +19,8 @@ function AddPoem() {
     const [terms, setTerms] = useState<boolean>(false);
     const [anonymous, setAnonymous] = useState<boolean>(false);
 
+    const [pending, setPending] = useState<boolean>(false);
+
     const db: Firestore = useFirebase();
     const navigate = useNavigate();
 
@@ -53,6 +55,7 @@ function AddPoem() {
     }
 
     const savePoem = async (poem: PoemType) => {
+        setPending(true);
         try {
             const doc = await addDoc(collection(db,'Poems'), poem);
 
@@ -74,6 +77,7 @@ function AddPoem() {
             alert("Niekde nastala chyba");
         }
 
+        setPending(false);
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -135,7 +139,7 @@ function AddPoem() {
                         Prispieť <span className='text-white font-bold'>anonymne.</span>
                     </Checkbox>
 
-                    <button type='submit' className='link-button mx-auto mt-8'>Odoslať</button>
+                    <button type='submit' disabled={pending} className='link-button mx-auto mt-8'>Odoslať</button>
 
                 </form>
             </div>

@@ -50,6 +50,10 @@
     .load-more:hover {
         @apply bg-meta-data;
     }
+
+    button[disabled]{
+        @apply opacity-65 cursor-not-allowed;
+    }
 }
 
 
