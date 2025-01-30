@@ -50,8 +50,9 @@ function AddPoem() {
                     <textarea rows={6}
                               className='input mt-6 w-full font-normal placeholder:font-normal'
                               name='poem'
+                              value={poem}
                               onChange={(e) => setPoem(e.target.value)}
-                              placeholder='Vaše verše'>{poem}</textarea>
+                              placeholder='Vaše verše'></textarea>
 
                     <Checkbox className='mt-6 mx-auto' checked={terms} setChecked={setTerms} name='terms'>
                         Súhlasím so spracovaním <Link target='_blank' className='text-white font-bold underline' to='/podmienky'>osobných údajov.</Link>

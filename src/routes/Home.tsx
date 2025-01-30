@@ -6,7 +6,7 @@ function Home() {
 
     return (
         <PageAnimationWrapper>
-            <div className='text-center'>
+            <article className='text-center'>
                 <img src={logo} alt="symbol" className='w-56 md:w-96 inline-block'/>
                 <p className='text-center -mt-4'>
                     Tento nezávislý študentský projekt <span className='highlighted-text'>chce kolektívnou poéziou poukázať na nespokojnosť so súčasným vládnym zriadením.</span> <br/><br/>
@@ -19,7 +19,7 @@ function Home() {
                 </p>
 
                 <Link className='link-button' to='/pridat-svoj-vers'>Prispieť svojou tvorbou!</Link>
-            </div>
+            </article>
         </PageAnimationWrapper>
     )
 }

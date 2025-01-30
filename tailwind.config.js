@@ -14,6 +14,7 @@ export default {
         'white': '#D7D7D7', // White
 
         'form-component': '#424242',
+        'meta-data': '#707070',
         'white-darken': '#acacac',
       },
       fontFamily: {

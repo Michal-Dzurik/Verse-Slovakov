@@ -12,7 +12,7 @@
     }
 
     #root{
-        @apply pt-32 md:pt-24 min-h-screen flex flex-col items-center justify-center;
+        @apply min-h-screen pt-36 md:pt-28 flex flex-col items-center justify-center;
     }
 
     p{
@@ -41,6 +41,14 @@
 
     .link-button:hover {
         @apply bg-white-darken text-dark-gray;
+    }
+
+    .load-more{
+        @apply transition-colors duration-300 px-6 py-3 bg-form-component border-transparent rounded-md text-sm font-bold text-white mt-7 mb-5 inline-block;
+    }
+
+    .load-more:hover {
+        @apply bg-meta-data;
     }
 }
 

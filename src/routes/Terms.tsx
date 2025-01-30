@@ -12,7 +12,7 @@ function Terms() {
 
                     Dáta <span className='highlighted-text'>sú uložené v službe Firebase</span> a má k nim prístup LEN administrátor stránky a samotná služba. <br/><br/>
 
-                    Pre viac info pozri <a className='highlighted-text underline' href="https://firebase.google.com/support/privacy">Firebase privacy policy</a>. <br/><br/>
+                    Pre viac info pozri <a className='highlighted-text underline' target='_blank' href="https://firebase.google.com/support/privacy">Firebase privacy policy</a>. <br/><br/>
                 </p>
             </article>
         </PageAnimationWrapper>
