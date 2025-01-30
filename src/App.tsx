@@ -8,12 +8,13 @@ import Terms from "./routes/Terms.tsx";
 import EmailSent from "./routes/EmailSent.tsx";
 import PoemVerify from "./routes/PoemVerify.tsx";
 import Poems from "./routes/Poems.tsx";
+import {FirebaseProvider} from "./contexts/FirebaseContext.tsx";
 
 function App() {
     const location = useLocation();
 
     return (
-        <>
+        <FirebaseProvider>
             <Navigation />
 
             <main>
@@ -28,7 +29,7 @@ function App() {
                     </Routes>
                 </AnimatePresence>
             </main>
-        </>
+        </FirebaseProvider>
   )
 }
 
