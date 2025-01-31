@@ -32,13 +32,13 @@ function AddPoem() {
         return Math.random().toString(36).substr(2);
     };
 
-    const HONEY_POT_DEFAULT = randomString();
+    const [honeyPotDefault] = useState(randomString());
     const MAX_TIME_FOR_BOTS = 3;
 
     useEffect(() => {
-        setHoneyPot(HONEY_POT_DEFAULT);
+        setHoneyPot(honeyPotDefault);
         setStartTime(Date.now());
-    },[])
+    },[honeyPotDefault])
 
     const goToVerification = () => {
         navigate("/email-uspesne-poslany");
@@ -66,7 +66,7 @@ function AddPoem() {
 
         const timeTaken = (Date.now() - startTime) / 1000;
 
-        if (honeyPot !== HONEY_POT_DEFAULT || timeTaken < MAX_TIME_FOR_BOTS) {
+        if (honeyPot !== honeyPotDefault || timeTaken < MAX_TIME_FOR_BOTS) {
             return {
                 valid: false,
                 message: 'Bot detekovaný.'
