@@ -18,7 +18,7 @@ function Home() {
                     <span className='highlighted-text'>Ak máte čo povedať, pridajte aj vy svoje verše a vyjadrite svoj názor umelecky a slušne!</span> <br/><br/>
                 </p>
 
-                <Link className='link-button mb-5' to='/pridat-svoj-vers'>Prispieť svojou tvorbou!</Link>
+                <Link className='link-button' to='/pridat-svoj-vers'>Prispieť svojou tvorbou!</Link>
             </article>
         </PageAnimationWrapper>
     )

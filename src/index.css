@@ -32,7 +32,7 @@
     }
 
     main{
-        @apply px-10 md:px-0 max-w-lg w-full mx-auto flex flex-wrap items-center justify-center flex-col;
+        @apply px-10 pt-5 pb-8 md:px-0 max-w-lg w-full mx-auto flex flex-wrap items-center justify-center flex-col;
     }
 
     .link-button{

@@ -31,7 +31,7 @@ function Checkbox({ children, checked, setChecked,name,required,className }: Pro
           </svg>
         </span>
             </label>
-            <label className="cursor-pointer ml-2 text-light-gray text-sm"
+            <label className="cursor-pointer ml-2 text-light-gray text-sm text-left"
                    htmlFor={'checkbox-' + name}>
                 {children}
             </label>
