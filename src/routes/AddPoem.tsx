@@ -1,6 +1,6 @@
 import logo from '../assets/big-feather.svg'
 import Input from "../components/Input";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Checkbox from "../components/Checkbox.tsx";
 import {Link, useNavigate} from "react-router-dom";
 import PageAnimationWrapper from "../components/PageAnimationWrapper.tsx";
@@ -19,10 +19,26 @@ function AddPoem() {
     const [terms, setTerms] = useState<boolean>(false);
     const [anonymous, setAnonymous] = useState<boolean>(false);
 
+    // Bot prevention
+    const [honeyPot, setHoneyPot] = useState<string>('');
+    const [startTime, setStartTime] = useState<number>(0);
+
     const [pending, setPending] = useState<boolean>(false);
 
     const db: Firestore = useFirebase();
     const navigate = useNavigate();
+
+    const randomString = (): string => {
+        return Math.random().toString(36).substr(2);
+    };
+
+    const HONEY_POT_DEFAULT = randomString();
+    const MAX_TIME_FOR_BOTS = 3;
+
+    useEffect(() => {
+        setHoneyPot(HONEY_POT_DEFAULT);
+        setStartTime(Date.now());
+    },[])
 
     const goToVerification = () => {
         navigate("/email-uspesne-poslany");
@@ -42,10 +58,18 @@ function AddPoem() {
             }
 
         if (email.trim() == '' || poem.trim() == '') {
-
             return {
                 valid: false,
                 message: 'Vyplňte všetky povinné polia.'
+            }
+        }
+
+        const timeTaken = (Date.now() - startTime) / 1000;
+
+        if (honeyPot !== HONEY_POT_DEFAULT || timeTaken < MAX_TIME_FOR_BOTS) {
+            return {
+                valid: false,
+                message: 'Bot detekovaný.'
             }
         }
 
@@ -70,8 +94,7 @@ function AddPoem() {
 
             await addDoc(collection(db,'mail'), email);
 
-            goToVerification()
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            goToVerification();
         }catch (e) {
             console.log(e)
             alert("Niekde nastala chyba.");
@@ -108,19 +131,31 @@ function AddPoem() {
                                name={name}
                                setName={setName}
                                type='text'
+                               autoComplete='off'
                                placeholder='Meno'></Input>
                         <Input className='w-[47%]'
                                name={lastName}
                                setName={setLastName}
                                type='text'
+                               autoComplete='off'
                                placeholder='Priezvisko'></Input>
                     </div>
+
+                    <input
+                        type="text"
+                        name={randomString()}
+                        className='hidden'
+                        value={honeyPot}
+                        onChange={(e) => setHoneyPot(e.target.value)}
+                        autoComplete="off"
+                    />
 
                     <Input className='w-full mt-6'
                            name={email}
                            setName={setEmail}
                            type='eamil'
                            placeholder='Email'
+                           autoComplete='off'
                            required={true}></Input>
 
                     <textarea rows={6}
@@ -129,6 +164,7 @@ function AddPoem() {
                               value={poem}
                               onChange={(e) => setPoem(e.target.value)}
                               placeholder='Vaše verše'
+                              autoComplete='off'
                               required={true}></textarea>
 
                     <Checkbox required={true} className='mt-6 mx-auto' checked={terms} setChecked={setTerms} name='terms'>
